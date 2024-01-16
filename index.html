@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+</head>
+<body>
+    <h1>Movie Search</h1>
+
+    <form method="POST">
+        <label for="query">Search Query:</label>
+        <input type="text" id="query" name="query" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Search Results for '{{ query }}'</h2>
+
+    <ul>
+        {% for result in search_results %}
+            <li>
+                <strong>Title:</strong> {{ result.Title }}<br>
+                <strong>Genre:</strong> {{ result.Genre }}<br>
+                <strong>Director:</strong> {{ result.Director }}<br>
+                <strong>Actors:</strong>
+                <ul>
+                    {% for actor in result.Actors %}
+                        <li>{{ actor.name }} ({{ actor.role }})</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
